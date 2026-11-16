@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn Software Engineers with In.Tech">
+    <title>Software Engineers | In.Tech</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/learning.css') }}">
+</head>
+<body>
+    <header class="learning-header">
+        <a href="{{ url_for('home') }}" class="back-link">← Back to In.Tech</a>
+        <span class="learning-label">IN.TECH LEARNING</span>
+    </header>
+
+    <main class="learning-container">
+        <section class="learning-hero">
+            <span class="topic-tag">ENGINEERS</span>
+            <h1>Software Engineers</h1>
+            <p>Explore the principles, workflows, tools, and practices used to build reliable software.</p>
+        </section>
+
+
+    <section class="lesson-card">
+        <span class="lesson-number">01</span>
+        <h2>Software Engineers Fundamentals</h2>
+        <p>Software engineers applies structured methods to designing, developing, testing, and maintaining software systems.</p>
+        <div class="code-heading">
+            <span>Simple Problem-Solving Example</span>
+            <button class="copy-button" data-copy-target="engineers-fundamentals" type="button">Copy Code</button>
+        </div>
+        <pre><code id="engineers-fundamentals">def calculate_total(price, quantity):
+    if price &lt; 0 or quantity &lt; 0:
+        raise ValueError(&quot;Values cannot be negative&quot;)
+
+    return price * quantity
+
+
+total = calculate_total(25, 3)
+print(&quot;Total:&quot;, total)</code></pre>
+        <p class="lesson-note">Explanation: Explanation: Breaking a task into a reusable function makes the program easier to understand, test, and maintain.</p>
+    </section>
+
+
+    <section class="lesson-card">
+        <span class="lesson-number">02</span>
+        <h2>Software Development Life Cycle</h2>
+        <p>The Software Development Life Cycle (SDLC) provides a structured process for creating and maintaining software.</p>
+        <div class="code-heading">
+            <span>SDLC Stages</span>
+            <button class="copy-button" data-copy-target="sdlc-stages" type="button">Copy Code</button>
+        </div>
+        <pre><code id="sdlc-stages"># 1. Planning
+# Define goals and requirements.
+
+# 2. Analysis
+# Understand user and system needs.
+
+# 3. Design
+# Plan the architecture and interface.
+
+# 4. Development
+# Write and organize the code.
+
+# 5. Testing
+# Check functionality and fix issues.
+
+# 6. Deployment
+# Release the application.
+
+# 7. Maintenance
+# Improve and update the software.</code></pre>
+        <p class="lesson-note">Explanation: Explanation: SDLC helps teams organize work into clear stages, from initial planning through long-term maintenance.</p>
+    </section>
+
+
+    <section class="lesson-card">
+        <span class="lesson-number">03</span>
+        <h2>Git and GitHub Fundamentals</h2>
+        <p>Git tracks changes in source code. GitHub provides a platform for hosting repositories and collaborating with other developers.</p>
+        <div class="code-heading">
+            <span>Basic Git Workflow</span>
+            <button class="copy-button" data-copy-target="git-workflow" type="button">Copy Code</button>
+        </div>
+        <pre><code id="git-workflow"># Create a repository
+git init
+
+# Check changed files
+git status
+
+# Stage changes
+git add .
+
+# Save a version
+git commit -m &quot;Add learning materials&quot;
+
+# Review commit history
+git log --oneline
+
+# Create a development branch
+git branch feature-learning</code></pre>
+        <p class="lesson-note">Explanation: Explanation: A commit records a version of your work. Branches allow you to develop features separately from the main branch.</p>
+    </section>
+
+
+    <section class="lesson-card">
+        <span class="lesson-number">04</span>
+        <h2>Testing and Debugging</h2>
+        <p>Testing checks whether software behaves as expected. Debugging helps developers identify and correct problems.</p>
+        <div class="code-heading">
+            <span>Python Unit Test Example</span>
+            <button class="copy-button" data-copy-target="testing-debugging" type="button">Copy Code</button>
+        </div>
+        <pre><code id="testing-debugging">import unittest
+
+def add_numbers(a, b):
+    return a + b
+
+class TestMathFunctions(unittest.TestCase):
+    def test_add_numbers(self):
+        self.assertEqual(add_numbers(2, 3), 5)
+
+if __name__ == &quot;__main__&quot;:
+    unittest.main()</code></pre>
+        <p class="lesson-note">Explanation: Explanation: The test verifies that add_numbers(2, 3) returns 5. Automated tests help detect unexpected changes.</p>
+    </section>
+
+
+    <section class="lesson-card">
+        <span class="lesson-number">05</span>
+        <h2>Secure Coding Fundamentals</h2>
+        <p>Secure coding helps protect application data through validation, safe database access, careful secret management, and appropriate permissions.</p>
+        <div class="code-heading">
+            <span>Input Validation Example</span>
+            <button class="copy-button" data-copy-target="secure-coding" type="button">Copy Code</button>
+        </div>
+        <pre><code id="secure-coding">def register_user(username, email):
+    username = username.strip()
+    email = email.strip()
+
+    if not username:
+        raise ValueError(&quot;Username is required&quot;)
+
+    if &quot;@&quot; not in email:
+        raise ValueError(&quot;A valid email is required&quot;)
+
+    return {
+        &quot;username&quot;: username,
+        &quot;email&quot;: email
+    }</code></pre>
+        <p class="lesson-note">Explanation: Explanation: Validate user input before processing it. Keep credentials outside source code, use password hashing, and apply only the permissions an application needs.</p>
+    </section>
+
+
+        <p class="learning-footer">In.Tech — Learn, Build, and Grow.</p>
+        <p id="copy-status" class="copy-status" role="status" aria-live="polite"></p>
+    </main>
+
+    <script>
+    document.querySelectorAll(".copy-button").forEach(function(button) {
+        button.addEventListener("click", async function() {
+            const code = document.getElementById(button.dataset.copyTarget);
+            const status = document.getElementById("copy-status");
+
+            try {
+                await navigator.clipboard.writeText(code.textContent);
+                status.textContent = "Code copied successfully.";
+            } catch (error) {
+                status.textContent = "Clipboard access is not available in this browser.";
+            }
+        });
+    });
+    </script>
+</body>
+</html>

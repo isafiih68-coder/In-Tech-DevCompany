@@ -1,0 +1,11 @@
+instance/
+.env
+.venv/
+__pycache__/
+*.pyc
+*.db
+*.log
+*.backup*
+
+# Local backups
+backups/

@@ -1,0 +1,53 @@
+:root {
+  /* BRAND COLORS */
+  --navy: #101B35;
+  --navy-light: #172746;
+  --electric-blue: #315EFB;
+  --primary: #315EFB;
+  --primary-dark: #2448D8;
+  --cyan: #21C8F6;
+  --violet: #8067F7;
+
+  /* ACCENT - highlight startup */
+  --accent: #21C8F6;
+  --accent-glow: rgba(33, 200, 246, 0.35);
+  --accent-bg: rgba(33, 200, 246, 0.12);
+
+  /* SURFACE COLORS */
+  --background: #F7F9FF;
+  --surface: #FFFFFF;
+  --surface-soft: #EDF3FF;
+
+  /* TEXT COLORS */
+  --text-primary: #243047;
+  --text-secondary: #778398;
+  --text-light: #FFFFFF;
+  --text: #243047;
+  --muted: #7B8798;
+
+  /* BORDER AND EFFECTS */
+  --border: #E1E8F5;
+  --shadow-soft: 0 8px 24px rgba(16, 27, 53, 0.07);
+  --shadow-strong: 0 12px 32px rgba(49, 94, 251, 0.15);
+  --blue-glow: 0 0 22px rgba(49, 94, 251, 0.28);
+
+  /* GLASS EFFECT */
+  --glass-background: rgba(255, 255, 255, 0.12);
+  --glass-border: rgba(255, 255, 255, 0.24);
+
+  /* SHAPE */
+  --radius-small: 10px;
+  --radius-medium: 16px;
+  --radius-large: 22px;
+
+  /* TRANSITION */
+  --transition: 0.25s ease;
+}
+
+/* SELECTIVE ACRYLIC */
+.acrylic-panel {
+  background: var(--glass-background);
+  border: 1px solid var(--glass-border);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}

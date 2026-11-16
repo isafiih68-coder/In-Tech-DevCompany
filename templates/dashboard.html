@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>In.Tech | Admin Dashboard</title>
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+
+    <div class="dashboard-layout">
+
+        <aside class="sidebar">
+            <div class="brand">
+                <img class="brand-logo" src="{{ url_for('static', filename='images/intech-logo.png') }}" alt="In.Tech Software Development">
+                <span>In.Tech</span>
+            </div>
+
+            <p class="sidebar-label">MAIN MENU</p>
+
+            <nav class="sidebar-nav">
+                <a href="/dashboard" class="nav-link active">
+                    <span>▦</span> Dashboard
+                </a>
+
+                <a href="/" class="nav-link">
+                    <span>⌂</span> Homepage
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <span class="online-dot"></span>
+                System Active
+            </div>
+        </aside>
+
+        <div class="main-area">
+
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">ADMINISTRATION</p>
+                    <h1>Dashboard</h1>
+                </div>
+
+                <div class="admin-info">
+                    <div class="admin-avatar">A</div>
+
+                    <div class="admin-details">
+                        <strong>{{ username }}</strong>
+                        <span>Administrator</span>
+                    </div>
+
+                    <form action="/logout" method="POST">
+                        <input type="hidden"
+                               name="csrf_token"
+                               value="{{ csrf_token }}">
+                        <button class="logout-button" type="submit">
+                            Logout
+                        </button>
+                    </form>
+                </div>
+            </header>
+
+            <main class="content">
+
+                <section class="welcome-section">
+                    <div>
+                        <h2>Welcome, {{ username }}!</h2>
+                        <p>Manage In.Tech user data from one place.</p>
+                    </div>
+                </section>
+
+                <section class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">♙</div>
+                    <div>
+                        <p>Total Users</p>
+                        <h2 id="user-total">Loading...</h2>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">✉</div>
+                    <div>
+                        <p>Total Messages</p>
+                        <h2 id="messages-total">Loading...</h2>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">▤</div>
+                    <div>
+                        <p>Learning Pages</p>
+                        <h2 id="learning-total">Loading...</h2>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">●</div>
+                    <div>
+                        <p>System Status</p>
+                        <h2 id="system-status">Checking...</h2>
+                    </div>
+                </div>
+            </section>
+
+                <section class="panel" id="recent-messages-panel">
+                <div class="panel-header">
+                    <div>
+                        <h2>Recent Contact Messages</h2>
+                        <p>Latest messages received through the website.</p>
+                    </div>
+                </div>
+
+                <div class="recent-messages-list" id="recent-messages">
+                    <p>Loading messages...</p>
+                </div>
+            </section>
+
+            <section class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h2>Quick Actions</h2>
+                        <p>Shortcuts to frequently used areas.</p>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <a href="#user-management" class="quick-action">Manage Users</a>
+                    <a href="#messages-management" class="quick-action">View Messages</a>
+                    <a href="#learning-management" class="quick-action">Manage Learning Content</a>
+                    <a href="/learn/web-development" class="quick-action">Learning Center</a>
+                    <a href="/" class="quick-action">Open Homepage</a>
+                </div>
+            </section>
+
+            <section class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h2>System Overview</h2>
+                        <p>Current application environment.</p>
+                    </div>
+                </div>
+
+                <div class="system-overview">
+                    <p>Backend: <strong>Flask</strong></p>
+                    <p>Database: <strong>SQLite</strong></p>
+                    <p>Application: <strong>In.Tech</strong></p>
+                    <p>Availability: <strong id="system-overview-status">Checking...</strong></p>
+                </div>
+            </section>
+
+
+            <section class="panel" id="messages-management">
+                <div class="panel-header">
+                    <div>
+                        <h2>Contact Messages</h2>
+                        <p>Review and manage messages received through the contact form.</p>
+                    </div>
+                    <button id="messages-refresh-button" class="refresh-button" type="button">
+                        ↻ Refresh Messages
+                    </button>
+                </div>
+
+                <div class="messages-toolbar">
+                    <label for="message-search">Search Messages</label>
+                    <input
+                        type="search"
+                        id="message-search"
+                        maxlength="100"
+                        placeholder="Search name, email, or subject"
+                    >
+                </div>
+
+                <p id="messages-status" class="messages-status" role="status" aria-live="polite"></p>
+
+                <div class="table-wrap">
+                    <table class="messages-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Subject</th>
+                                <th>Received</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="messages-list"></tbody>
+                    </table>
+                </div>
+
+                <dialog id="message-dialog" class="message-dialog">
+                    <div class="message-dialog-header">
+                        <h2 id="message-dialog-subject">Message Details</h2>
+                        <button id="message-dialog-close" type="button" class="message-dialog-close">
+                            Close
+                        </button>
+                    </div>
+                    <p id="message-dialog-meta" class="message-dialog-meta"></p>
+                    <div id="message-dialog-content" class="message-dialog-content"></div>
+                </dialog>
+            </section>
+
+            <section class="panel" id="user-management">
+                    <div class="panel-header">
+                        <div>
+                            <h2>User List</h2>
+                            <p>User information and management.</p>
+                        </div>
+
+                        <button id="refresh-button"
+                                class="refresh-button"
+                                type="button">
+                            ↻ Refresh Data
+                        </button>
+                    </div>
+
+                    <form id="add-user-form" class="add-user-form">
+                        <div class="add-user-field">
+                            <label for="new-user-name">User Name</label>
+                            <input
+                                type="text"
+                                id="new-user-name"
+                                name="name"
+                                maxlength="100"
+                                placeholder="Enter user name"
+                                required
+                            >
+                        </div>
+                        <button type="submit" class="add-user-button">
+                            + Add User
+                        </button>
+                    </form>
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Created At</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="user-list"></tbody>
+                        </table>
+                    </div>
+
+                    <p id="dashboard-message"
+                       class="dashboard-message"
+                       role="status"
+                       aria-live="polite"></p>
+                </section>
+
+
+            <!-- INTECH LEARNING MANAGEMENT START -->
+            <section class="panel" id="learning-management">
+                <div class="panel-header">
+                    <div>
+                        <h2>Learning Content Management</h2>
+                        <p>Manage additional learning materials.</p>
+                    </div>
+                </div>
+
+                <form id="learning-content-form" class="learning-form">
+                    <label for="learning-category">Category</label>
+                    <select id="learning-category" required>
+                        <option value="web-development">Web Development</option>
+                        <option value="backend-development">Backend Development</option>
+                        <option value="database-management">Database Management</option>
+                        <option value="software-engineering">Software Engineering</option>
+                    </select>
+
+                    <label for="learning-title">Title</label>
+                    <input id="learning-title" type="text"
+                           maxlength="150" required
+                           placeholder="Enter lesson title">
+
+                    <label for="learning-content">Content</label>
+                    <textarea id="learning-content" rows="7"
+                              maxlength="20000" required
+                              placeholder="Write learning material here"></textarea>
+
+                    <div class="learning-form-actions">
+                        <button type="submit" id="learning-submit">
+                            Add Learning Content
+                        </button>
+                        <button type="button" id="learning-cancel"
+                                hidden>Cancel Edit</button>
+                    </div>
+                    <p id="learning-status" role="status"
+                       aria-live="polite"></p>
+                </form>
+
+                <div class="learning-list-header">
+                    <h3>Saved Learning Materials</h3>
+                    <span id="learning-count">0 items</span>
+                </div>
+                <div id="learning-list" class="learning-list">
+                    <p>Loading learning materials...</p>
+                </div>
+            </section>
+            <!-- INTECH LEARNING MANAGEMENT END -->
+
+            <footer class="page-footer">
+                    In.Tech &copy; 2026
+                    <span>Admin Dashboard</span>
+                </footer>
+
+            </main>
+        </div>
+    </div>
+
+    <script src="/static/js/dashboard.js" defer></script>
+
+</body>
+</html>

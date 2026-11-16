@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn Web Development with In.Tech">
+    <title>Web Development | In.Tech</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/learning.css') }}">
+</head>
+<body>
+    <header class="learning-header">
+        <a href="{{ url_for('home') }}" class="back-link">← Back to In.Tech</a>
+        <span class="learning-label">IN.TECH LEARNING</span>
+    </header>
+
+    <main class="learning-container">
+        <section class="learning-hero">
+            <span class="topic-tag">FRONTEND DEVELOPMENT</span>
+            <h1>Web Development</h1>
+            <p>Learn to build website interfaces using HTML, CSS, and JavaScript.</p>
+        </section>
+
+        <section class="lesson-card">
+            <span class="lesson-number">01</span>
+            <h2>HTML — Website Structure</h2>
+            <p>HTML structures page elements such as headings, paragraphs, images, and links.</p>
+            <div class="code-heading">
+                <span>HTML Example</span>
+                <button class="copy-button" data-copy-target="html-code" type="button">Copy Code</button>
+            </div>
+            <pre><code id="html-code">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;title&gt;My First Website&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welcome to In.Tech&lt;/h1&gt;
+    &lt;p&gt;I am learning Web Development.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            <p class="lesson-note">Explanation: <strong>h1</strong> creates the main heading, while <strong>p</strong> creates a paragraph.</p>
+        </section>
+
+        <section class="lesson-card">
+            <span class="lesson-number">02</span>
+            <h2>CSS — Website Styling</h2>
+            <p>CSS controls the colors, sizes, spacing, and layout of HTML elements.</p>
+            <div class="code-heading">
+                <span>CSS Example</span>
+                <button class="copy-button" data-copy-target="css-code" type="button">Copy Code</button>
+            </div>
+            <pre><code id="css-code">body {
+    font-family: Arial, sans-serif;
+    background: #F7F9FF;
+    color: #243047;
+}
+
+h1 {
+    color: #315EFB;
+    text-align: center;
+}</code></pre>
+            <p class="lesson-note">Explanation: <strong>color</strong> sets the text color, while <strong>background</strong> sets the background color.</p>
+        </section>
+
+        <section class="lesson-card">
+            <span class="lesson-number">03</span>
+            <h2>JavaScript — Website Interactivity</h2>
+            <p>JavaScript allows web pages to respond to user actions.</p>
+            <div class="code-heading">
+                <span>JavaScript Example</span>
+                <button class="copy-button" data-copy-target="js-code" type="button">Copy Code</button>
+            </div>
+            <pre><code id="js-code">const button = document.querySelector("#tombol");
+
+button.addEventListener("click", function () {
+    alert("Hello from In.Tech!");
+});</code></pre>
+            <p class="lesson-note">Explanation: <strong>addEventListener</strong> runs a function when a user clicks.</p>
+        </section>
+
+        <p class="learning-footer">In.Tech — Learn, Build, and Grow.</p>
+        <p id="copy-status" class="copy-status" role="status" aria-live="polite"></p>
+    </main>
+
+    <script>
+    document.querySelectorAll(".copy-button").forEach(function(button) {
+        button.addEventListener("click", async function() {
+            const code = document.getElementById(button.dataset.copyTarget);
+            const status = document.getElementById("copy-status");
+
+            try {
+                await navigator.clipboard.writeText(code.textContent);
+                status.textContent = "Code copied successfully.";
+            } catch (error) {
+                status.textContent = "Clipboard access is not available in this browser.";
+            }
+        });
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,274 @@
+@import url("design-system.css");
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--background, #F7F9FF);
+    color: var(--text, #243047);
+    font-family: Arial, sans-serif;
+    line-height: 1.7;
+}
+
+.learning-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 7%;
+    background: linear-gradient(120deg, #101B35, #172746);
+    color: white;
+}
+
+.back-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.learning-label {
+    color: #21C8F6;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+}
+
+.learning-container {
+    width: min(900px, 90%);
+    margin: 42px auto;
+}
+
+.learning-hero {
+    padding: 38px;
+    margin-bottom: 28px;
+    border-radius: 20px;
+    color: white;
+    background: linear-gradient(120deg, #315EFB, #21A9E8, #8067F7);
+    box-shadow: 0 14px 35px rgba(49, 94, 251, 0.2);
+}
+
+.topic-tag {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.learning-hero h1 {
+    margin: 10px 0;
+    font-size: clamp(28px, 5vw, 42px);
+}
+
+.learning-hero p {
+    margin-bottom: 0;
+}
+
+.lesson-card {
+    position: relative;
+    padding: 28px;
+    margin-bottom: 22px;
+    background: white;
+    border: 1px solid #E1E8F5;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(16, 27, 53, 0.05);
+}
+
+.lesson-number {
+    color: #315EFB;
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.lesson-card h2 {
+    margin: 6px 0;
+    color: #101B35;
+}
+
+.code-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: 22px;
+    padding: 12px 16px;
+    background: #172746;
+    color: white;
+    border-radius: 10px 10px 0 0;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.copy-button {
+    padding: 7px 13px;
+    border: 0;
+    border-radius: 7px;
+    background: #315EFB;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.copy-button:hover {
+    background: #21A9E8;
+}
+
+pre {
+    margin: 0;
+    padding: 20px;
+    overflow-x: auto;
+    background: #101B35;
+    color: #D8E7FF;
+    border-radius: 0 0 10px 10px;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+code {
+    font-family: "Courier New", monospace;
+}
+
+.lesson-note {
+    padding: 12px 15px;
+    margin-bottom: 0;
+    background: #F0F5FF;
+    border-left: 3px solid #315EFB;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.learning-footer {
+    padding: 25px 0;
+    text-align: center;
+    color: #65738B;
+    font-size: 13px;
+}
+
+.copy-status {
+    text-align: center;
+    color: #167B55;
+    font-size: 13px;
+}
+
+@media (max-width: 600px) {
+    .learning-header {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 18px 5%;
+    }
+
+    .learning-container {
+        width: 92%;
+        margin: 24px auto;
+    }
+
+    .learning-hero,
+    .lesson-card {
+        padding: 22px;
+    }
+
+    pre {
+        font-size: 12px;
+    }
+}
+
+
+/* INTECH LEARNING HERO NEON CIRCUIT */
+.learning-hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: linear-gradient(
+        120deg,
+        #315EFB,
+        #21A9E8,
+        #8067F7
+    );
+}
+
+/* Angular PCB tracks and circuit branches */
+.learning-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: .55;
+    background:
+        linear-gradient(#8CEBFF, #8CEBFF)
+            5% 18% / 24% 2px no-repeat,
+        linear-gradient(#8CEBFF, #8CEBFF)
+            29% 18% / 2px 30% no-repeat,
+        linear-gradient(90deg, #8CEBFF, #FFFFFF)
+            29% 48% / 22% 2px no-repeat,
+        linear-gradient(#FFFFFF, #FFFFFF)
+            51% 48% / 2px 25% no-repeat,
+
+        linear-gradient(#C7B8FF, #C7B8FF)
+            94% 12% / 2px 35% no-repeat,
+        linear-gradient(90deg, #C7B8FF, #FFFFFF)
+            70% 47% / 24% 2px no-repeat,
+
+        linear-gradient(#8CEBFF, #8CEBFF)
+            7% 65% / 2px 25% no-repeat,
+        linear-gradient(90deg, #8CEBFF, #FFFFFF)
+            7% 65% / 25% 2px no-repeat,
+
+        linear-gradient(90deg, #C7B8FF, #FFFFFF)
+            58% 83% / 36% 2px no-repeat,
+        linear-gradient(#C7B8FF, #C7B8FF)
+            94% 65% / 2px 18% no-repeat;
+}
+
+/* Moving circuit pulses */
+.learning-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(circle, #FFFFFF 0 1.5px, #8CEBFF 2px, transparent 5px),
+        radial-gradient(circle, #FFFFFF 0 1.5px, #C7B8FF 2px, transparent 5px),
+        radial-gradient(circle, #FFFFFF 0 1.5px, #8CEBFF 2px, transparent 5px),
+        radial-gradient(circle, #FFFFFF 0 1.5px, #C7B8FF 2px, transparent 5px);
+    background-repeat: no-repeat;
+    background-size: 10px 10px;
+    background-position: 5% 18%, 94% 12%, 7% 65%, 58% 83%;
+    filter: drop-shadow(0 0 5px #FFFFFF);
+    animation: learning-circuit-flow 8s linear infinite;
+}
+
+/* Keep banner text above circuit graphics */
+.learning-hero > * {
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes learning-circuit-flow {
+    0% {
+        background-position: 5% 18%, 94% 12%, 7% 65%, 58% 83%;
+    }
+    20% {
+        background-position: 29% 18%, 94% 35%, 25% 65%, 75% 83%;
+    }
+    40% {
+        background-position: 29% 48%, 70% 47%, 32% 80%, 94% 65%;
+    }
+    60% {
+        background-position: 51% 48%, 70% 75%, 7% 90%, 94% 83%;
+    }
+    80% {
+        background-position: 51% 73%, 94% 65%, 7% 65%, 58% 83%;
+    }
+    100% {
+        background-position: 5% 18%, 94% 12%, 7% 65%, 58% 83%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .learning-hero::after {
+        animation: none;
+    }
+}

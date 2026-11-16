@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn Database Management with In.Tech">
+    <title>Database Management | In.Tech</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/learning.css') }}">
+</head>
+<body>
+    <header class="learning-header">
+        <a href="{{ url_for('home') }}" class="back-link">← Back to In.Tech</a>
+        <span class="learning-label">IN.TECH LEARNING</span>
+    </header>
+
+    <main class="learning-container">
+        <section class="learning-hero">
+            <span class="topic-tag">DATA MANAGEMENT</span>
+            <h1>Database Management</h1>
+            <p>Learn how to organize, store, query, and manage application data using SQL and SQLite.</p>
+        </section>
+
+
+    <section class="lesson-card">
+        <span class="lesson-number">01</span>
+        <h2>Database Fundamentals</h2>
+        <p>A database organizes information into tables. Each table contains rows and columns. A primary key uniquely identifies each record.</p>
+        <div class="code-heading">
+            <span>Table Structure Example</span>
+            <button class="copy-button" data-copy-target="database-structure" type="button">Copy Code</button>
+        </div>
+        <pre><code id="database-structure">CREATE TABLE students (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    email TEXT UNIQUE,
+    age INTEGER
+);</code></pre>
+        <p class="lesson-note">Explanation: Explanation: Each row represents a student. The id column is the primary key, while each column stores a specific type of information.</p>
+    </section>
+
+
+    <section class="lesson-card">
+        <span class="lesson-number">02</span>
+        <h2>SQL Fundamentals</h2>
+        <p>SQL (Structured Query Language) is used to communicate with relational databases.</p>
+        <div class="code-heading">
+            <span>SQL Query Example</span>
+            <button class="copy-button" data-copy-target="sql-fundamentals" type="button">Copy Code</button>
+        </div>
+        <pre><code id="sql-fundamentals">SELECT name, email
+FROM students
+WHERE age &gt;= 18
+ORDER BY name ASC;</code></pre>
+        <p class="lesson-note">Explanation: Explanation: SELECT chooses columns, WHERE filters records, and ORDER BY sorts the results.</p>
+    </section>
+
+
+    <section class="lesson-card">
+        <span class="lesson-number">03</span>
+        <h2>SQLite with Python</h2>
+        <p>SQLite is a lightweight database engine that stores data in a local file. Python includes the sqlite3 module for working with SQLite.</p>
+        <div class="code-heading">
+            <span>Python and SQLite Example</span>
+            <button class="copy-button" data-copy-target="sqlite-python" type="button">Copy Code</button>
+        </div>
+        <pre><code id="sqlite-python">import sqlite3
+
+connection = sqlite3.connect(&quot;school.db&quot;)
+
+connection.execute(
+    &quot;CREATE TABLE IF NOT EXISTS students (&quot;
+    &quot;id INTEGER PRIMARY KEY, &quot;
+    &quot;name TEXT NOT NULL)&quot;
+)
+
+connection.commit()
+connection.close()</code></pre>
+        <p class="lesson-note">Explanation: Explanation: connect() opens the database, execute() runs SQL, and commit() saves database changes.</p>
+    </section>
+
+
+    <section class="lesson-card">
+        <span class="lesson-number">04</span>
+        <h2>CRUD Operations</h2>
+        <p>CRUD stands for Create, Read, Update, and Delete. These are the four basic operations used to manage stored records.</p>
+        <div class="code-heading">
+            <span>CRUD with Parameterized Queries</span>
+            <button class="copy-button" data-copy-target="crud-example" type="button">Copy Code</button>
+        </div>
+        <pre><code id="crud-example">import sqlite3
+
+connection = sqlite3.connect(&quot;school.db&quot;)
+
+# Create
+connection.execute(
+    &quot;INSERT INTO students (name) VALUES (?)&quot;,
+    (&quot;Alex&quot;,)
+)
+
+# Read
+rows = connection.execute(
+    &quot;SELECT id, name FROM students&quot;
+).fetchall()
+
+# Update
+connection.execute(
+    &quot;UPDATE students SET name = ? WHERE id = ?&quot;,
+    (&quot;Jordan&quot;, 1)
+)
+
+# Delete
+connection.execute(
+    &quot;DELETE FROM students WHERE id = ?&quot;,
+    (1,)
+)
+
+connection.commit()
+connection.close()</code></pre>
+        <p class="lesson-note">Explanation: Explanation: Parameterized queries use placeholders such as ?. They keep data separate from SQL instructions and are safer than building queries through string concatenation.</p>
+    </section>
+
+
+    <section class="lesson-card">
+        <span class="lesson-number">05</span>
+        <h2>Relationships and JOIN</h2>
+        <p>Relational databases connect tables using keys. A one-to-many relationship allows one record to be associated with multiple records in another table.</p>
+        <div class="code-heading">
+            <span>Foreign Key and JOIN Example</span>
+            <button class="copy-button" data-copy-target="database-relationships" type="button">Copy Code</button>
+        </div>
+        <pre><code id="database-relationships">CREATE TABLE courses (
+    id INTEGER PRIMARY KEY,
+    title TEXT NOT NULL
+);
+
+CREATE TABLE enrollments (
+    id INTEGER PRIMARY KEY,
+    student_id INTEGER,
+    course_id INTEGER,
+    FOREIGN KEY (student_id) REFERENCES students(id),
+    FOREIGN KEY (course_id) REFERENCES courses(id)
+);
+
+SELECT students.name, courses.title
+FROM enrollments
+JOIN students ON students.id = enrollments.student_id
+JOIN courses ON courses.id = enrollments.course_id;</code></pre>
+        <p class="lesson-note">Explanation: Explanation: Foreign keys connect related records. JOIN combines information from multiple tables in one query.</p>
+    </section>
+
+
+        <p class="learning-footer">In.Tech — Learn, Build, and Grow.</p>
+        <p id="copy-status" class="copy-status" role="status" aria-live="polite"></p>
+    </main>
+
+    <script>
+    document.querySelectorAll(".copy-button").forEach(function(button) {
+        button.addEventListener("click", async function() {
+            const code = document.getElementById(button.dataset.copyTarget);
+            const status = document.getElementById("copy-status");
+
+            try {
+                await navigator.clipboard.writeText(code.textContent);
+                status.textContent = "Code copied successfully.";
+            } catch (error) {
+                status.textContent = "Clipboard access is not available in this browser.";
+            }
+        });
+    });
+    </script>
+</body>
+</html>

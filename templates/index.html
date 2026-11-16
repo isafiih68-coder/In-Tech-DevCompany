@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <meta name="description" content="In.Tech Software Development — Learn, Build, and Improve.">
+    <title>In.Tech | Software Development</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="hero" id="home">
+
+
+
+
+    <div class="hero-content">
+            <img
+                src="{{ url_for('static', filename='images/intech-logo.png') }}"
+                alt="In.Tech Logo"
+                class="hero-logo"
+            >
+            <h1 id="company-title">In.Tech</h1>
+            <p class="hero-description" id="company-description">
+                We are a software development learning, building,
+                and exploring technology together.
+            </p>
+            <button id="welcome-button" type="button" class="primary-button">
+                Discover In.Tech
+            </button>
+            <div id="welcome-panel" class="hero-welcome-panel" hidden>
+                <h3>Welcome to In.Tech!</h3>
+                <p>A place to learn, build, and develop software solutions.</p>
+                <p>Learn. Build. Improve.</p>
+            </div>
+</div>
+
+<!-- INTECH SOFTWARE WORKFLOW HERO START -->
+<div class="workflow-visual" aria-label="Software development workflow">
+    <svg class="workflow-connections" viewBox="0 0 620 430" aria-hidden="true">
+        <defs>
+            <linearGradient id="workflow-gradient" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#00D9FF"/>
+                <stop offset="100%" stop-color="#A100FF"/>
+            </linearGradient>
+        </defs>
+
+        <path class="workflow-line" d="M310 210 V85 H115 V145"/>
+        <path class="workflow-line" d="M310 210 V85 H505 V145"/>
+        <path class="workflow-line" d="M310 245 V345 H115 V290"/>
+        <path class="workflow-line" d="M310 245 V345 H505 V290"/>
+
+        <circle class="workflow-dot dot-one" r="5" cx="115" cy="145"/>
+        <circle class="workflow-dot dot-two" r="5" cx="505" cy="145"/>
+        <circle class="workflow-dot dot-three" r="5" cx="115" cy="290"/>
+        <circle class="workflow-dot dot-four" r="5" cx="505" cy="290"/>
+    </svg>
+
+    <div class="workflow-module module-code">
+        <span class="workflow-symbol">&lt;/&gt;</span>
+        <strong>Code Development</strong>
+        <small>Build &amp; Create</small>
+    </div>
+
+    <div class="workflow-module module-cloud">
+        <span class="workflow-symbol">☁</span>
+        <strong>Cloud Integration</strong>
+        <small>Connect Systems</small>
+    </div>
+
+    <div class="workflow-module module-database">
+        <span class="workflow-symbol">▤</span>
+        <strong>Database</strong>
+        <small>Manage Data</small>
+    </div>
+
+    <div class="workflow-module module-deploy">
+        <span class="workflow-symbol">⚙</span>
+        <strong>Deployment</strong>
+        <small>Monitor &amp; Improve</small>
+    </div>
+
+    <div class="workflow-core">
+        <div class="workflow-window-bar">
+            <span></span><span></span><span></span>
+            <small>IN.TECH / WORKFLOW</small>
+        </div>
+        <div class="workflow-editor">
+            <div class="workflow-code-line line-long"></div>
+            <div class="workflow-code-line line-short"></div>
+            <div class="workflow-code-line line-medium"></div>
+            <div class="workflow-code-line line-long"></div>
+            <div class="workflow-code-line line-medium"></div>
+            <div class="workflow-code-line line-short"></div>
+            <div class="workflow-code-line line-long"></div>
+        </div>
+        <div class="workflow-core-icon">&lt;/&gt;</div>
+        <div class="workflow-core-label">SOFTWARE ENGINEERING</div>
+    </div>
+</div>
+<!-- INTECH SOFTWARE WORKFLOW HERO END -->
+
+    </header>
+
+    <main>
+        <!-- OUR SERVICES -->
+        <section class="section-card" id="services">
+            <div class="section-heading">
+                <span class="section-kicker">WHAT WE DO</span>
+                <h2>Our Services</h2>
+                <p>Explore the essential areas of modern software development.</p>
+            </div>
+
+            <div class="service-grid">
+                <a href="{{ url_for('web_development') }}" class="service-item service-link">
+                    <span class="service-icon icon-blue" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4M7 9l3 3-3 3M13 15h4"/></svg>
+                    </span>
+                    <span class="service-category">FRONTEND</span>
+                    <h3>Web Development</h3>
+                    <p>Building responsive websites with modern web technologies.</p>
+                    <span class="service-action">Explore Learning <span>→</span></span>
+                </a>
+
+                <a href="{{ url_for('backend_development') }}" class="service-item service-link">
+                    <span class="service-icon icon-cyan" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="7" rx="2"/><rect x="3" y="14" width="18" height="7" rx="2"/><path d="M7 6.5h.01M7 17.5h.01M11 6.5h6M11 17.5h6"/></svg>
+                    </span>
+                    <span class="service-category">BACKEND</span>
+                    <h3>Backend Development</h3>
+                    <p>Developing application systems using Python and Flask.</p>
+                    <span class="service-action">Explore Learning <span>→</span></span>
+                </a>
+
+                <a href="{{ url_for("database_management") }}" class="service-item service-link">
+                    <span class="service-icon icon-violet" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/></svg>
+                    </span>
+                    <span class="service-category">DATA MANAGEMENT</span>
+                    <h3>Database Management</h3>
+                    <p>Understanding SQL, SQLite, data structures, and CRUD operations.</p>
+                    <span class="service-action">Explore Roadmap <span>→</span></span>
+                </a>
+
+                <a href="{{ url_for("software_engineering") }}" class="service-item service-link">
+                    <span class="service-icon icon-blue" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 4l-4 16"/></svg>
+                    </span>
+                    <span class="service-category">Engineers</span>
+                    <h3>Software Engineers </h3>
+                    <p>Exploring software testing, Git workflows, and security fundamentals.</p>
+                    <span class="service-action">Explore Roadmap <span>→</span></span>
+                </a>
+            </div>
+        </section>
+
+        <!-- TECHNOLOGIES -->
+        <section class="section-card" id="technologies">
+            <div class="section-heading">
+                <span class="section-kicker">OUR TOOLKIT</span>
+                <h2>Technologies</h2>
+                <p>Explore our technologies and start your learning journey.</p>
+            </div>
+
+            <div class="technology-grid">
+                <button type="button"
+                    class="technology-card technology-select-button"
+                    data-topic="HTML">
+                    <img src="{{ url_for('static', filename='images/technologies/html5.svg') }}" alt="HTML5 Logo">
+                    <span class="technology-name">HTML</span>
+                    <span class="technology-description">Living Standard</span>
+                </button>
+<button type="button"
+                    class="technology-card technology-select-button"
+                    data-topic="CSS">
+                    <img src="{{ url_for('static', filename='images/technologies/css3.svg') }}" alt="CSS3 Logo">
+                    <span class="technology-name">CSS</span>
+                    <span class="technology-description">CSS Standards</span>
+                </button>
+<button type="button"
+                    class="technology-card technology-select-button"
+                    data-topic="JavaScript">
+                    <img src="{{ url_for('static', filename='images/technologies/javascript.svg') }}" alt="JavaScript Logo">
+                    <span class="technology-name">JavaScript</span>
+                    <span class="technology-description">ECMAScript</span>
+                </button>
+<button type="button"
+                    class="technology-card technology-select-button"
+                    data-topic="Python">
+                    <img src="{{ url_for('static', filename='images/technologies/python.svg') }}" alt="Python Logo">
+                    <span class="technology-name">Python</span>
+                    <span class="technology-description">Version 3.14.10</span>
+                </button>
+<button type="button"
+                    class="technology-card technology-select-button"
+                    data-topic="Flask">
+                    <img src="{{ url_for('static', filename='images/technologies/flask.svg') }}" alt="Flask Logo">
+                    <span class="technology-name">Flask</span>
+                    <span class="technology-description">Version 3.1.3</span>
+                </button>
+            </div>
+
+            <!-- INTEGRATED LEARNING ROADMAP -->
+            <div class="section-heading">
+                <span class="section-kicker">KEEP LEARNING</span>
+                <h2>Learning Resources</h2>
+                <p>Select a technology to explore its learning resources.</p>
+            </div>
+
+            <div class="roadmap-grid">
+                <button class="roadmap-button" data-topic="HTML">Learn HTML</button>
+                <button class="roadmap-button" data-topic="CSS">Learn CSS</button>
+                <button class="roadmap-button" data-topic="JavaScript">Learn JavaScript</button>
+                <button class="roadmap-button" data-topic="Python">Learn Python</button>
+                <button class="roadmap-button" data-topic="Flask">Learn Flask</button>
+            </div>
+
+            <div id="roadmap-message" class="interactive-panel" hidden>
+                <h3 id="roadmap-title"></h3>
+                <p>Learning resources will be opened in a new tab.</p>
+            </div>
+        </section>
+
+        <!-- CONTACT US -->
+        <section id="contact-form" class="section-card">
+            <div class="section-heading">
+                <span class="section-kicker">GET IN TOUCH</span>
+                <h2>Contact Us</h2>
+                <p>Send a message to the In.Tech</p>
+            </div>
+
+            <form id="contact-message-form" action="/contact" method="POST">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+
+                <div class="contact-field">
+                    <label for="contact-name">Name</label>
+                    <input
+                        type="text"
+                        id="contact-name"
+                        name="name"
+                        class="contact-input"
+                        placeholder="Enter your name"
+                        maxlength="100"
+                        autocomplete="name"
+                        required
+                    >
+                </div>
+
+                <div class="contact-field">
+                    <label for="contact-email">Email Address</label>
+                    <input
+                        type="email"
+                        id="contact-email"
+                        name="email"
+                        class="contact-input"
+                        placeholder="Enter your email address"
+                        maxlength="254"
+                        autocomplete="email"
+                        required
+                    >
+                </div>
+
+                <div class="contact-field">
+                    <label for="contact-subject">Subject</label>
+                    <input
+                        type="text"
+                        id="contact-subject"
+                        name="subject"
+                        class="contact-input"
+                        placeholder="Enter message subject"
+                        maxlength="150"
+                        required
+                    >
+                </div>
+
+                <div class="contact-field">
+                    <label for="contact-message">Message</label>
+                    <textarea
+                        id="contact-message"
+                        name="message"
+                        class="contact-input"
+                        placeholder="Write your message here"
+                        maxlength="5000"
+                        rows="6"
+                        required
+                    ></textarea>
+                </div>
+
+                <button type="submit" class="primary-button">
+                    Send Message
+                </button>
+            </form>
+            <p id="form-message" role="status" aria-live="polite"></p>
+        </section>
+    </main>
+
+    <footer id="site-footer">
+        <h2>In.Tech</h2>
+        <p>SOFTWARE DEVELOPMENT</p>
+        <a href="https://github.com/" target="_blank" rel="noopener noreferrer">Explore GitHub</a>
+        <p class="copyright">In.Tech &copy; 2026</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</body>
+</html>
